@@ -105,3 +105,10 @@ Sources/Netzblick/
   Model/      Device (+ Gerätetyp-Erkennung), DeviceStore, Scanner
   Views/      ContentView, NetworkSummaryBar, DeviceDetailView
 ```
+
+## Lizenz
+
+MIT – siehe [LICENSE](LICENSE).
+
+Die Herstellertabelle in `Resources/oui.tsv` stammt aus den öffentlichen
+IEEE-Registern und unterliegt deren Nutzungsbedingungen.
