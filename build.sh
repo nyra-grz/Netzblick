@@ -8,10 +8,14 @@ cd "$(dirname "$0")"
 export DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer
 
 CONFIG="${1:-release}"
+# Zweites Argument "universal" baut zusätzlich für Intel-Macs. Kostet die
+# doppelte Bauzeit, nur für Veröffentlichungen nötig.
+ARCHS=""
+[ "${2:-}" = "universal" ] && ARCHS="--arch arm64 --arch x86_64"
 APP="build/Netzblick.app"
 
-echo "▸ Kompiliere ($CONFIG) …"
-swift build -c "$CONFIG"
+echo "▸ Kompiliere ($CONFIG${ARCHS:+, universal}) …"
+swift build -c "$CONFIG" $ARCHS
 
 echo "▸ Baue App-Bundle …"
 rm -rf "$APP"
@@ -55,4 +59,4 @@ echo "▸ Signiere …"
 codesign --force --sign - --identifier de.timur.netzblick "$APP"
 codesign --verify --strict "$APP" && echo "  Signatur ok"
 
-echo "✓ Fertig: $(pwd)/$APP"
+echo "✓ Fertig: $(pwd)/$APP  ($(lipo -archs "$APP/Contents/MacOS/Netzblick"))"

@@ -11,8 +11,9 @@ Die fertige App liegt in `/Applications/Netzblick.app`.
 Neu bauen:
 
 ```bash
-./build.sh          # Release-Build + signiertes App-Bundle in build/
-./build.sh debug    # schnellerer Debug-Build
+./build.sh                   # Release-Build + signiertes App-Bundle in build/
+./build.sh debug             # schnellerer Debug-Build
+./build.sh release universal # zusätzlich für Intel-Macs (doppelte Bauzeit)
 ```
 
 ## Wie die Erkennung funktioniert
